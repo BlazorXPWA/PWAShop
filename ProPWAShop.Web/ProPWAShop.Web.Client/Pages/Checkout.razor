@@ -1,0 +1,145 @@
+﻿@page "/checkout"
+@attribute [Authorize]
+
+@if (cartProducts == null)
+{
+    <LoadingScreen />
+}
+else
+{
+    <section class="section-pagetop bg">
+        <div class="container">
+            <h2 class="title-page text-center">Подготовка заказа</h2>
+        </div>
+    </section>
+
+    <section class="section-content padding-y bg">
+        <div class="container">
+            <div class="row">
+
+                <aside class="col-md-6">
+                    <div class="card mb-3">
+                        <article class="card-body">
+                            <header class="mb-4">
+                                <h4 class="card-title">Ваши товары</h4>
+                            </header>
+                            <div class="row">
+
+                                @foreach (var product in cartProducts)
+                                {
+                                    <div class="col-md-6">
+                                        <figure class="itemside  mb-3">
+                                            <div class="aside">
+                                                <img src="@product.ImageSource" class="border img-xs" />
+                                            </div>
+                                            <figcaption class="info">
+                                                <p> @product.Name </p>
+                                                <span> @product.Quantity x @product.Price ₽ = @(product.Price * product.Quantity) ₽ </span>
+                                            </figcaption>
+                                        </figure>
+                                    </div>
+                                }  
+                               
+
+                            </div>
+                        </article>
+                        <article class="card-body border-top">
+
+                            <dl class="row">
+                                <dt class="col-sm-10">Сумма: <span class="float-right text-muted">@cartProducts.Count() items</span></dt>
+                                <dd class="col-sm-2 text-right"><strong>@totalPrice ₽</strong></dd>
+
+                                <dt class="col-sm-10">Скидка: <span class="float-right text-muted">0%</span></dt>
+                                <dd class="col-sm-2 text-danger text-right"><strong>0 ₽</strong></dd>
+
+                                @*<dt class="col-sm-10">Выбор доставки: <span class="float-right text-muted">Стандартная доставка</span></dt>
+                                <dd class="col-sm-2 text-right"><strong>Бесплатно</strong></dd>*@
+
+                                <dt class="col-sm-10">Итого:</dt>
+                                <dd class="col-sm-2 text-right"><strong class="h5 text-dark">@totalPrice ₽</strong></dd>
+                            </dl>
+
+                        </article>
+                    </div>
+                </aside>
+
+                <aside class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+
+                            <h4 class="card-title mb-4">Информация для доставки</h4>
+                            <EditForm Model="address" OnValidSubmit="SubmitAsync">
+
+                                <DataAnnotationsValidator />
+                                <ValidationSummary />
+
+                                @*<div class="form-group">
+                                    <label class="custom-control custom-radio custom-control-inline">
+                                        <input class="custom-control-input" checked="" type="radio" name="gender" value="option1">
+                                        <span class="custom-control-label"> Стандартная доставка: <br /> Бесплатно </span>
+                                    </label>
+                                </div>*@
+
+                                <div class="form-row">
+                                    @*<div class="col form-group">
+                                        <label>Email</label>
+                                        <InputText @bind-Value="email" type="email" class="form-control" disabled />
+                                    </div>*@
+                                    <div class="col form-group">
+                                        <label>Phone</label>
+                                        <InputText @bind-Value="address.PhoneNumber" type="tel" class="form-control" />
+                                    </div>
+                                </div>
+                                @*TODO: update Adress*@
+                                <div class="form-row">
+                                    @*<div class="form-group col-md-6">
+                                        <label>Страна</label>
+                                        <InputSelect @bind-Value="address.Country" id="inputState" class="form-control">
+                                            <option value="Uzbekistan">Uzbekistan</option>
+                                            <option value="Russia">Russia</option>
+                                            <option value="United States">United States</option>
+                                            <option value="Bulgaria" selected="">Bulgaria</option>
+                                            <option value="India">India</option>
+                                            <option value="Afghanistan">Afghanistan</option>
+                                        </InputSelect>
+                                    </div>*@
+                                   
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col form-group">
+                                        <label>Город</label>
+                                        <InputSelectNumber @bind-Value="address.CityId" type="text" class="form-control">
+                                            @foreach (var city in cities)
+                                                {
+                                                <option value="@city.Id">@city.Name</option>                                              
+                                                }
+                                        </InputSelectNumber>
+                                    </div>
+                                   
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>Улица, дом...</label>
+                                    <InputTextArea @bind-Value="address.Description" class="form-control" rows="2"></InputTextArea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Комментарий</label>
+                                    <InputTextArea @bind-Value="address.Comments" class="form-control" rows="2"></InputTextArea>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block"> Разместить заказ </button>
+                                </div>
+
+                            </EditForm>
+                        </div>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </section>
+}

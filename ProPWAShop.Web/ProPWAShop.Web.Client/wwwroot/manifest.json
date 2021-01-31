@@ -1,13 +1,13 @@
 {
-  "name": "PWAShop.Web.Client",
-  "short_name": "PWAShop.Web.Client",
+  "name": "ProPWAShop",
+  "short_name": "ProPWAShop",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#00ff00",
   "theme_color": "#03173d",
   "icons": [
     {
-      "src": "icon-512.png",
+      "src": "icon-1024.png",
       "type": "image/png",
       "sizes": "512x512"
     }

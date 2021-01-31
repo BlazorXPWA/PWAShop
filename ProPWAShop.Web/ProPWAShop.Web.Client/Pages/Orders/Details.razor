@@ -1,0 +1,67 @@
+﻿@page "/order/details/{Id}"
+@attribute [Authorize]
+
+@if (order == null)
+{
+    <LoadingScreen />
+}
+else
+{
+    <section class="section-pagetop bg">
+        <div class="container">
+            <h2 class="title-page text-center">Заказ №@Id</h2>
+        </div>
+    </section>
+
+    <section class="section-content padding-y bg">
+        <div class="container">
+
+            <div class="card mb-3">
+                <article class="card-body">
+                    <header class="mb-4">
+                        <h4 class="card-title">Детали заказа</h4>
+                    </header>
+                    <div class="row">
+
+                        @foreach (var product in order.Products)
+                        {
+                            <div class="col-md-6">
+                                <figure class="itemside  mb-3">
+                                    <div class="aside">
+                                        <img src="@product.ImageSource" class="border img-xs" />
+                                    </div>
+                                    <figcaption class="info">
+                                        <p> @product.Name </p>
+                                        <span> @product.Quantity x @product.Price ₽ = Итого: @(product.Price * product.Quantity) ₽ </span>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        }
+
+                    </div>
+                </article>
+                <article class="card-body border-top">
+
+                    <dl class="row">
+                        <dt class="col-sm-10">Дата: </dt>
+                        <dd class="col-sm-2 text-right"><strong>@order.CreatedOn</strong></dd>
+
+                        <dt class="col-sm-10">Сумма заказа: <span class="float-right text-muted">@order.Products.Count() items</span></dt>
+                        <dd class="col-sm-2 text-right"><strong>@totalPrice ₽</strong></dd>
+
+                        <dt class="col-sm-10">Скидка: <span class="float-right text-muted">0%</span></dt>
+                        <dd class="col-sm-2 text-danger text-right"><strong>0 ₽</strong></dd>
+
+                        <dt class="col-sm-10">Вид доставки: <span class="float-right text-muted">Стандартная доставка</span></dt>
+                        <dd class="col-sm-2 text-right"><strong>Бесплатно</strong></dd>
+
+                        <dt class="col-sm-10">Итого:</dt>
+                        <dd class="col-sm-2 text-right"><strong class="h5 text-dark">@totalPrice ₽</strong></dd>
+                    </dl>
+
+                </article>
+            </div>
+
+        </div>
+    </section>
+}

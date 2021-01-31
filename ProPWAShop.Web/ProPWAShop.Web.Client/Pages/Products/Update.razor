@@ -1,0 +1,117 @@
+﻿@page "/products/update/{Id:int}"
+@attribute [Authorize(Roles = Constants.AdministratorRole)]
+
+@if (categories == null || model == null)
+{
+    <LoadingScreen />
+}
+else
+{
+    <section class="section-pagetop bg">
+        <div class="container">
+            <h2 class="title-page text-center">Обновить продукт</h2>
+        </div>
+    </section>
+
+    <section class="section-content padding-y bg">
+        <div class="container">
+            <div class="row">
+                <div class="card mx-auto">
+                    <article class="card-body">
+
+                        <EditForm Model="model" OnValidSubmit="SubmitAsync">
+
+                            <DataAnnotationsValidator />
+                            <ValidationSummary />
+
+
+                            <div class="form-group">
+                                <label>Наименование</label>
+                                <InputText @bind-Value="model.Name" type="text" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Категория</label>
+                                <InputSelectNumber @bind-Value="model.CategoryId" class="form-control">
+                                    @foreach (var category in categories)
+                                        {
+                                            if (model.CategoryId == category.Id)
+                                            {
+                                            <option value="@category.Id" selected="">@category.Name</option>
+                                            }
+                                            else
+                                            {
+                                            <option value="@category.Id">@category.Name</option>
+                                            }
+                                        }
+                                </InputSelectNumber>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Тип</label>
+                                <InputText @bind-Value="model.SubCategory" type="text" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Изображение</label>
+                                <InputText @bind-Value="model.ImageSource" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Описание</label>
+                                <InputTextArea @bind-Value="model.Description" rows="4" class="form-control"></InputTextArea>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label>Время созревания</label>
+                                </div>
+                                <div class="col form-group">
+                                    <label>От</label>
+                                    <InputNumber @bind-Value="model.DaysFrom" type="number" class="form-control" />
+                                </div>
+                                <div class="col form-group">
+                                    <label>До</label>
+                                    <InputNumber @bind-Value="model.DaysTo" type="number" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label>Цена</label>
+                                    <InputNumber @bind-Value="model.Price" type="number" class="form-control" />
+                                </div>
+                                <div class="col form-group">
+                                    <label>В упаковке</label>
+                                    <InputNumber @bind-Value="model.InPack" rows="2" class="form-control"></InputNumber>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Количество на складе</label>
+                                <InputNumber @bind-Value="model.Quantity" type="number" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Единицы измрения</label>
+                                <InputSelectNumber @bind-Value="model.UnitsType" class="form-control">
+                                    @foreach (var value in @EnumHelper<UnitsType>.GetValues(UnitsType.g))
+                                        {
+                                            var description = EnumHelper<UnitsType>.GetDisplayValue(value);
+                                        <option value="@value">@description</option>
+                                        }
+                                </InputSelectNumber>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-block btn-primary">Обновить</button>
+                            </div>
+
+                        </EditForm>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+}

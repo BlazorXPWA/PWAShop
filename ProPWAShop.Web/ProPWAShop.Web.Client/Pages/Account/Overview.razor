@@ -1,0 +1,106 @@
+﻿@page "/account/overview"
+@attribute [Authorize]
+
+@if (orders == null)
+{
+    <LoadingScreen />
+}
+else
+{
+    <section class="section-content padding-y bg">
+        <div class="container">
+
+            <div class="row">
+
+                <AccountSidebar />
+
+                <main class="col-md-9">
+
+                    <article class="card mb-3">
+                        <div class="card-body">
+
+                            <figure class="icontext">
+                                <div class="text">
+                                    <strong> @firstName @lastName </strong>
+                                    <br />
+                                    @email
+                                    <br />
+                                    <a href="/account/settings">Редактировать</a>
+                                </div>
+                            </figure>
+                            <hr>
+                            <p>
+                                <i class="fa fa-map-marker text-muted"></i> &nbsp; Мой адрес:
+                                <br />
+                                My city, Street name, Building 123, House 321 &nbsp;
+                                <a href="/addresses" class="btn-link"> Редактировать </a>
+                            </p>
+
+                            <article class="card-group">
+                                <figure class="card bg">
+                                    <div class="p-3">
+                                        <a href="/orders/mine">
+                                            <h5 class="card-title">@orders.Count()</h5>
+                                            <span> Заказов</span>
+                                        </a>
+                                    </div>
+                                </figure>
+                                <figure class="card bg">
+                                    <div class="p-3">
+                                        <a href="/wishlist">
+                                            <h5 class="card-title">@products.Count()</h5>
+                                            <span>В избранном</span>
+                                        </a>
+                                    </div>
+                                </figure>
+                            </article>
+                        </div>
+                    </article>
+
+                    <article class="card  mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title mb-4">Последние заказы </h5>
+
+                            <div class="row">
+
+                                @foreach (var order in orders)
+                                {
+                                    <div class="col-md-6">
+                                        <figure class="itemside  mb-3">
+
+                                            <div class="aside">
+                                                <a href="/order/details/@order.Id">
+                                                    <img src="@order.ProductImageSource" class="border img-sm">
+                                                </a>
+                                            </div>
+                                            <figcaption class="info">
+                                                <a href="/order/details/@order.Id">
+                                                    <time class="text-muted"><i class="fa fa-calendar-alt"></i> @order.CreatedOn </time>
+                                                    <p class="black"> @order.ProductName </p>
+                                                    <span class="text-success">@EnumOrderStatusValue(order.OrderStatus)</span>
+                                                </a>
+                                            </figcaption>
+
+                                        </figure>
+                                    </div>
+                                }
+
+                            </div>
+
+                            <a href="/orders/mine" class="btn btn-outline-primary"> Все заказы  </a>
+                        </div>
+                    </article>
+
+                </main>
+            </div>
+
+        </div>
+    </section>
+}
+
+@{
+    string EnumOrderStatusValue(OrderStatus u)
+    {
+        return EnumHelper<OrderStatus>.GetDisplayValue(u);
+    }
+}

@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\ProPWAShop.Models\ProPWAShop.Models.csproj" />
     <ProjectReference Include="..\..\ProPWAShop.Services\ProPWAShop.Services.csproj" />
+    <ProjectReference Include="..\ProPWAShop.Web.Client\ProPWAShop.Web.Client.csproj" />
   </ItemGroup>
 
 </Project>

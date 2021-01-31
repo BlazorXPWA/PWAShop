@@ -1,9 +1,61 @@
-﻿@using System.Net.Http
+﻿@using System.Net
+@using System.Net.Http
+@using System.Net.Http.Headers
 @using System.Net.Http.Json
+
+@using Blazored.LocalStorage
+@using Blazored.Toast
+@using Blazored.Toast.Services
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.AspNetCore.Components.WebAssembly.Http
 @using Microsoft.JSInterop
-@using ProPWAShop.Web.Client
+
+@using ProPWAShop.Common
+@using ProPWAShop.Data
+@using ProPWAShop.Data.Models
+@using ProPWAShop.Models
+@using ProPWAShop.Models.Addresses
+@using ProPWAShop.Models.Categories
+@using ProPWAShop.Models.Identity
+@using ProPWAShop.Models.Orders
+@using ProPWAShop.Models.Products
+@using ProPWAShop.Models.ShoppingCarts
+@using ProPWAShop.Models.Wishlists
+@using ProPWAShop.Web.Client.Infrastructure
+@using ProPWAShop.Web.Client.Infrastructure.Extensions
+@using ProPWAShop.Web.Client.Infrastructure.Services
+@using ProPWAShop.Web.Client.Infrastructure.Services.Authentication
+@using ProPWAShop.Web.Client.Infrastructure.Services.Addresses
+@using ProPWAShop.Web.Client.Infrastructure.Services.Users
+@using ProPWAShop.Web.Client.Infrastructure.Services.Cities
+@using ProPWAShop.Web.Client.Infrastructure.Services.Categories
+@using ProPWAShop.Web.Client.Infrastructure.Services.Orders
+@using ProPWAShop.Web.Client.Infrastructure.Services.Confirmation
+@using ProPWAShop.Web.Client.Infrastructure.Services.Products
+@using ProPWAShop.Web.Client.Infrastructure.Services.ShoppingCarts
+@using ProPWAShop.Web.Client.Infrastructure.Services.Wishlists
+@using ProPWAShop.Web.Client.Pages.Account
 @using ProPWAShop.Web.Client.Shared
+@using ProPWAShop.Web.Client.Shared.Common
+@using ProPWAShop.Web.Client.Shared.Navigation
+@using ProPWAShop.Web.Client.Shared.Products
+
+@inject ApiAuthenticationStateProvider AuthState
+@inject NavigationManager NavigationManager
+@inject HttpClient Http
+@inject IToastService ToastService
+@inject IAuthService AuthService
+@*@inject IConfirmClientService ConfirmClientService*@
+@inject IConfirmationService ConfirmationService
+@inject IAddressesService AddressesService
+@inject IUsersService UsersService
+@inject ICitiesService CitiesService
+@inject ICategoriesService CategoriesService
+@inject IOrdersService OrdersService
+@inject IProductsService ProductsService
+@inject IShoppingCartsService ShoppingCartsService
+@inject IWishlistsService WishlistsService
