@@ -16,9 +16,5 @@
   <ItemGroup>
     <ProjectReference Include="..\ProPWAShop.Common\ProPWAShop.Common.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-    <Folder Include="Seed\" />
-  </ItemGroup>
 
 </Project>

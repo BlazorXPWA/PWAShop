@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PWAShop.Web.Client
+namespace ProPWAShop.Web.Client
 {
     public class Program
     {

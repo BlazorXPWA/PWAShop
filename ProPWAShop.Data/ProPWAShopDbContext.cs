@@ -1,4 +1,4 @@
-﻿namespace PWAShop.Data
+﻿namespace ProPWAShop.Data
 {
     using System;
     using System.Linq;

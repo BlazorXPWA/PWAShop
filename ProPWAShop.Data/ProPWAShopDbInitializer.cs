@@ -1,19 +1,19 @@
-﻿namespace ProPWAShop.Data
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
+using ProPWAShop.Data.Contracts;
+using ProPWAShop.Data.Models;
+
+namespace ProPWAShop.Data
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using System.Threading.Tasks;
-
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
-
-    using Contracts;
-    using Models;
 
     using static Common.Constants;
-    using PWAShop.Data;
 
     public class ProPWAShopDbInitializer : IInitializer
     {
