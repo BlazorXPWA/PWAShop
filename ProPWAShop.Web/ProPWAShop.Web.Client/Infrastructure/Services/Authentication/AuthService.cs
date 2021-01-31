@@ -22,7 +22,7 @@
 
         private const string LoginPath = "api/identity/login";
         private const string RegisterPath = "api/identity/register";
-        private const string GetData = "api/identity/GetUserData";
+        private const string GetUserDataPath = "api/identity/GetUserData";
         private const string ConfirmdPath = "api/ConfirmsMessage/confirmation";
         //private const string ConfirmdPath = "api/identity/confirmation";
 
@@ -76,7 +76,7 @@
         }
         
         public async Task<ChangeSettingsRequestModel> GetUserData()
-            => await this.httpClient.GetFromJsonAsync<ChangeSettingsRequestModel>(GetData);
+            => await this.httpClient.GetFromJsonAsync<ChangeSettingsRequestModel>(GetUserDataPath);
 
         public async Task Logout()
         {

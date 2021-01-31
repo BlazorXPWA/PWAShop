@@ -7,13 +7,14 @@
     using ProPWAShop.Models.Users;
     using Infrastructure.Extensions;
     using Models.Identity;
+    using System.Threading;
 
     public partial class Settings
     {
-        private ChangeSettingsRequestModel model = new ChangeSettingsRequestModel();
+        private ChangeSettingsRequestModel model;
 
         private string phone;
-        private int phoneConfirmed=0;
+        private int PhoneConfirmationCode = 0;
         public bool phoneConfirmedVisibiliy = false;
 
         public bool ShowErrors { get; set; }
@@ -25,8 +26,11 @@
         private async Task LoadDataAsync()
         {
             this.model = await AuthService.GetUserData();
-            this.phone = model.Phone;         
+            //this.phone = $"+38(071){model.Phone.Substring(1, 2)}/*-{ model.Phone.Substring(3, 4)}-{ model.Phone.Substring(5, 6)}*/";
+
+            this.phone = $"+38(071){model.Phone}";
         }
+
         private async Task SubmitAsync()
         {
             var response = await this.Http.PutAsJsonAsync("api/identity/changesettings", this.model);
@@ -45,13 +49,11 @@
                 this.Errors = await response.Content.ReadFromJsonAsync<string[]>();
                 this.ShowErrors = true;
             }
-            this.model.PhoneConfirmation = phoneConfirmed;
+            this.model.PhoneConfirmation = PhoneConfirmationCode;
         }
 
     }
 }
-//this.phone = $"+38(071){model.Phone.Substring(1, 3)}-{ model.Phone.Substring(4, 5)}-{ model.Phone.Substring(6, 7)}";
-
 //this.userData = await this.UsersService.GetCurrentUserData();
 //if (userData.PersonalDiscountPercent == 0) phoneConfirmedVisibiliy = true;
 // var state = await this.AuthState.GetAuthenticationStateAsync();

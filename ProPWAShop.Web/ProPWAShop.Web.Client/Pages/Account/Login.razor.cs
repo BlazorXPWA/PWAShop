@@ -21,8 +21,7 @@
             {
                 this.ShowErrors = false;
                 this.ToastService.ShowSuccess("Вы успешно вошли в аккаунт", "Прекрасно!");
-                    this.NavigationManager.NavigateTo("/account/PhoneConfirmation");
-
+                    this.NavigationManager.NavigateTo("/account/settings");
             }
             else
             {

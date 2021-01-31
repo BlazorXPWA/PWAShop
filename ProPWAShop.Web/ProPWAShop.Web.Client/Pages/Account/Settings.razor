@@ -1,7 +1,7 @@
 ﻿@page "/account/settings"
 @attribute [Authorize]
 
-@if (model == null)
+@if (model == null )
 {
     <LoadingScreen />
 }
@@ -19,7 +19,7 @@ else
                     <article class="card mb-3">
                         <div class="card-body">
 
-                            <h4 class="card-title mb-4">Настройки аккаунта</h4>
+                            <h4 class="card-title mb-4">Настройки профиля</h4>
                             <EditForm Model="model" OnValidSubmit="SubmitAsync">
 
                                 <ErrorsList ShowErrors="ShowErrors" Errors="Errors" />
@@ -27,10 +27,10 @@ else
                                 <ValidationSummary />
 
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Телефон</label>
-                                    <div class="col-sm-6">
-                                        <InputText @bind-Value="phone" type="Phone" class="form-control-plaintext" readonly />
-                                    </div>
+                                    <label class="col-sm-2 col-form-label">@phone</label>
+                                    @*<div class="col-sm-6">
+                                        <InputText @bind-Value="phone"  class="form-control-plaintext" readonly />
+                                    </div>*@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Имя</label>

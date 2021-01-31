@@ -54,7 +54,7 @@
             {
                 this.Page = 1;
             }
-            maxRange = model.MaxPrice ?? 200 ;
+            maxRange = model.MaxPrice ?? 1500 ;
             this.model.Category = this.CategoryId;
             this.model.Query = this.SearchQuery;
             this.model.Page = this.Page;

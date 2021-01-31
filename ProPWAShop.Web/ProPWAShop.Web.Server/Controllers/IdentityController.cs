@@ -25,9 +25,10 @@
         }
 
         [HttpGet(nameof(GetUserData))]
-        public async Task<Result<ChangeSettingsRequestModel>> GetUserData()
-            => await this.identity.GetUserDataAsync(this.currentUser.UserId);
-
+        public async Task<ActionResult<ChangeSettingsRequestModel>> GetUserData()
+        => await this.identity
+                 .GetUserDataAsync(this.currentUser.UserId)
+                 .ToActionResult(); 
 
         [HttpPost(nameof(Register))]
         public async Task<ActionResult> Register(

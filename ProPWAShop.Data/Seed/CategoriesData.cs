@@ -14,9 +14,9 @@
             {
                 new Category {/*Id=1,*/ Name = "Огурец" },
                 new Category {/*Id=2,*/ Name = "Перец" },
-                new Category {/*Id=3,*/ Name = "Electronics" },
-                new Category {/*Id=4,*/ Name = "Books, Movies & Music" },
-                new Category {/*Id=5,*/ Name = "Books, Mwww & Music" },
+                new Category {/*Id=3,*/ Name = "Помидоры" },
+                new Category {/*Id=4,*/ Name = "Кабачки" },
+                new Category {/*Id=5,*/ Name = "Цветы" },
             };
     }
 
