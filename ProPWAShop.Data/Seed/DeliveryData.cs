@@ -12,9 +12,9 @@
                 public IEnumerable<object> GetData()
             => new List<Delivery>
             {
-                new Delivery {Name = "Бесплатная", Price=0 },
-                new Delivery {Name = "Самовывоз", Price=0 },
-                new Delivery {Name = "Срочная", Price=100 },          
+                new Delivery {Name = "Бесплатная", Price=0, Target="Адресная"},
+                new Delivery {Name = "Самовывоз", Price=0, Target="Главный офис" },
+                new Delivery {Name = "Срочная", Price=100, Target="Адресная"},          
             };
     }
 }
