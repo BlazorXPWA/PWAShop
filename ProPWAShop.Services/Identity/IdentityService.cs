@@ -62,6 +62,7 @@
                 LastName = user.LastName,
                 Phone = user.PhoneNumber,
                 PhoneConfirmed = user.EmailConfirmed,
+                PersonalDiscountPercent = user.PersonalDiscountPercent
             };
             return model;
         }

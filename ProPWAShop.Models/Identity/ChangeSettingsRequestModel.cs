@@ -23,6 +23,8 @@
 
         public int PhoneConfirmation { get; set; }
 
+        public int PersonalDiscountPercent { get; set; }
+
         public bool PhoneConfirmed { get; set; }
 
         public string Phone { get; set; }
