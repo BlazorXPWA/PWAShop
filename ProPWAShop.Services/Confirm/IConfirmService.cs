@@ -9,8 +9,7 @@ namespace ProPWAShop.Services.Confirm
 {
    public interface IConfirmService
     {
-        Task<string> SendCodeAsync(string userId);
-        Task<string> SendCode(string userId);
+        Task<Result> SendCodeAsync(string userId);
         Task<Result> ConfirmationAsync(ConfirmationRequestModel model, string userId);
     }
 }

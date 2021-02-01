@@ -74,12 +74,12 @@ namespace ProPWAShop.Services.Confirm
             //var responseString = await response.Content.ReadAsStringAsync();
         
 
-        public Task<string> SendCode(
-             string userId)
-        {
-            return Task<string>.Run(() => "123");
-        }
-        public async Task<string> SendCodeAsync(
+        //public Task<string> SendCode(
+        //     string userId)
+        //{
+        //    return Task<string>.Run(() => "123");
+        //}
+        public async Task<Result> SendCodeAsync(
              string userId)
         {           
             var User = DBContext.Users.FirstOrDefault(e => e.Id == userId);

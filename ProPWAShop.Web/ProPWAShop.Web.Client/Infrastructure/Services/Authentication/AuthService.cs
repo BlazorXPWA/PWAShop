@@ -24,6 +24,7 @@
         private const string RegisterPath = "api/identity/register";
         private const string GetUserDataPath = "api/identity/GetUserData";
         private const string ConfirmdPath = "api/ConfirmsMessage/confirmation";
+        private const string SendConfirmationCodePath = "api/ConfirmsMessage/SendConfirmationCode";
         //private const string ConfirmdPath = "api/identity/confirmation";
 
         public AuthService(
@@ -44,6 +45,11 @@
         public async Task<Result> Confirmation(ConfirmationRequestModel model)
             => await this.httpClient
                 .PostAsJsonAsync(ConfirmdPath, model)
+                .ToResult(); 
+        
+        public async Task<Result> SendConfirmationCode()
+            => await this.httpClient
+                .GetAsync(SendConfirmationCodePath)
                 .ToResult();
 
         public async Task<Result> Login(LoginRequestModel model)

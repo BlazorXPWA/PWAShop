@@ -23,18 +23,11 @@ namespace ProPWAShop.Web.Server.Controllers
             this.currentUser = currentUser;
         }
 
-        [HttpGet]
-        //[AllowAnonymous]
-        public async Task<string> Index()
-        //=> await this.confirmService.SendCode("2f1cfe91-195b-47bc-887d-699d4110c39b");
-        => await this.confirmService.SendCodeAsync(this.currentUser.UserId);
-
-        [HttpGet(nameof(Test))]
-        //[AllowAnonymous]
-        public Task<string> Test()
-        //=> await this.confirmService.SendCode("2f1cfe91-195b-47bc-887d-699d4110c39b");
-        =>  this.confirmService.SendCode(this.currentUser.UserId);
-
+        [HttpGet(nameof(SendConfirmationCode))]
+        public async Task<ActionResult> SendConfirmationCode()
+        => await this.confirmService.SendCodeAsync(this.currentUser.UserId)
+            .ToActionResult();
+              
         [HttpPost(nameof(Confirmation))]
         public async Task<ActionResult> Confirmation(
             ConfirmationRequestModel model)

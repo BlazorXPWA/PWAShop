@@ -36,8 +36,8 @@
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 PhoneNumber = model.Phone,
-                Email = model.Phone + "@donsem.ru",
-                UserName = model.FirstName + "_" + model.LastName
+                Email = model.Phone + "@semky.ru",
+                UserName = model.FirstName + " " + model.LastName + " " + model.Phone
             };
 
             var identityResult = await this.userManager.CreateAsync(user, model.Password);

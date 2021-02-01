@@ -8,15 +8,14 @@
     using Infrastructure.Extensions;
     using Models.Identity;
     using System.Threading;
+    using ProPWAShop.Models;
 
     public partial class Settings
     {
         private ChangeSettingsRequestModel model;
-
         private string phone;
-        private int PhoneConfirmationCode = 0;
         public bool phoneConfirmedVisibiliy = false;
-
+        Result s;
         public bool ShowErrors { get; set; }
 
         public IEnumerable<string> Errors { get; set; }
@@ -28,12 +27,17 @@
             this.model = await AuthService.GetUserData();
             //this.phone = $"+38(071){model.Phone.Substring(1, 2)}/*-{ model.Phone.Substring(3, 4)}-{ model.Phone.Substring(5, 6)}*/";
 
-            this.phone = $"+38(071){model.Phone}";
+            this.phone = $"+38(071){model.Phone.Substring(0, 3)}-{ model.Phone.Substring(3, 2)}-{ model.Phone.Substring(5, 2)}";
+             
+            if (!model.PhoneConfirmed) s = await AuthService.SendConfirmationCode();
+            s = Result.Success;
         }
 
         private async Task SubmitAsync()
         {
             var response = await this.Http.PutAsJsonAsync("api/identity/changesettings", this.model);
+            if (!model.PhoneConfirmed)
+            s = await AuthService.Confirmation(new ConfirmationRequestModel() { PhoneConfirmation = model.PhoneConfirmation });
 
             if (response.IsSuccessStatusCode)
             {
@@ -49,15 +53,13 @@
                 this.Errors = await response.Content.ReadFromJsonAsync<string[]>();
                 this.ShowErrors = true;
             }
-            this.model.PhoneConfirmation = PhoneConfirmationCode;
+
         }
 
     }
 }
-//this.userData = await this.UsersService.GetCurrentUserData();
-//if (userData.PersonalDiscountPercent == 0) phoneConfirmedVisibiliy = true;
-// var state = await this.AuthState.GetAuthenticationStateAsync();
-//var user = state.User;
-//this.phone = "+38(071) " + user.GetEmail().Substring(0, 7);
-//this.model.FirstName = user.GetFirstName();
-//this.model.LastName = user.GetLastName();
+
+
+
+
+

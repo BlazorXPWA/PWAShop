@@ -20,7 +20,7 @@ namespace ProPWAShop.Web.Client.Infrastructure.Extensions
     using Services.Wishlists;
     using ProPWAShop.Web.Client.Infrastructure.Services.Users;
     using ProPWAShop.Web.Client.Infrastructure.Services.Confirm;
-    using ProPWAShop.Web.Client.Infrastructure.Services.Confirmation;
+    //using ProPWAShop.Web.Client.Infrastructure.Services.Confirmation;
 
     public static class WebAssemblyHostBuilderExtensions
     {
@@ -48,8 +48,6 @@ namespace ProPWAShop.Web.Client.Infrastructure.Extensions
                 .AddTransient<IAuthService, AuthService>()
                 .AddTransient<IUsersService, UsersService>()
                 .AddTransient<IAddressesService, AddressesService>()
-                //.AddTransient<IConfirmClientService, ConfirmClientService>()
-                .AddTransient<IConfirmationService, ConfirmationService>()
                 .AddTransient<ICitiesService, CitiesService>()
                 .AddTransient<ICategoriesService, CategoriesService>()
                 .AddTransient<IOrdersService, OrdersService>()

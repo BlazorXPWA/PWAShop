@@ -13,6 +13,8 @@
 
         Task<Result> Login(LoginRequestModel model);
 
+        Task<Result> SendConfirmationCode();
+
         Task<ChangeSettingsRequestModel> GetUserData();
 
         Task Logout();
