@@ -95,7 +95,7 @@
 
         public async Task<Result<LoginResponseModel>> LoginAsync(LoginRequestModel model)
         {
-            var user = await this.userManager.FindByEmailAsync(model.Phone + "@donsem.ru");
+            var user = await this.userManager.FindByEmailAsync(model.Phone + "@semky.ru");
             if (user == null)
             {
                 return InvalidErrorMessage;

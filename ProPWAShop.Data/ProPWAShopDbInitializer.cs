@@ -75,7 +75,7 @@ namespace ProPWAShop.Data
                         PhoneNumber = "7777777",
                         UserName = "Admin_Admin",
                         SecurityStamp = "9d876trdcvbnmliuytrds",
-                        Email = "7777777@donsem.ru",
+                        Email = "7777777@semky.ru",
                     };
                     var adminRole = new ProPWAShopRole(AdministratorRole);
                     await this.roleManager.CreateAsync(adminRole);
