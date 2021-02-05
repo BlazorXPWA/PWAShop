@@ -32,6 +32,13 @@
             return category.Id;
         }
 
+        private async Task<Category> FindByIdAsync(
+            int id)
+            => await this
+                .All()
+                .Where(c => c.Id == id)
+                .FirstOrDefaultAsync();
+
         public async Task<Result> UpdateAsync(
             int id, CategoriesRequestModel model)
         {
@@ -71,11 +78,5 @@
                     .AllAsNoTracking())
                 .ToListAsync();
 
-        private async Task<Category> FindByIdAsync(
-            int id)
-            => await this
-                .All()
-                .Where(c => c.Id == id)
-                .FirstOrDefaultAsync();
     }
 }

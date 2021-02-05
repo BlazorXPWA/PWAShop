@@ -12,9 +12,17 @@
                 public IEnumerable<object> GetData()
             => new List<Delivery>
             {
-                new Delivery {Name = "Бесплатная", Price=0, Target="Адресная"},
-                new Delivery {Name = "Самовывоз", Price=0, Target="Главный офис" },
-                new Delivery {Name = "Срочная", Price=100, Target="Адресная"},          
+                new Delivery {Name = "Континент",
+                    Price=0, Target="Выдача у ТЦ Континен. Ср. Пт. в 18-00",
+                    Phone="+38(071)123-00-00"},
+                new Delivery {Name = "Калининский",
+                    Price=0,
+                    Target="Калининский рынок. Донецк. Вт. Чт. в 8-00",
+                    Phone="+38(071)123-11-11"},
+                new Delivery {Name = "ЖД Донецк", 
+                    Price=0,
+                    Target="Выдача у ЖД Вокзала. Донецк. Ср. Пт. СБ. в 12-00",
+                    Phone="+38(071)123-22-22"},               
             };
     }
 }
