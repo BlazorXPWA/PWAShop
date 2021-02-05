@@ -6,7 +6,10 @@
     using Infrastructure.Services;
     using ProPWAShop.Services.Cities;
     using ProPWAShop.Models.Cities;
+    using Microsoft.AspNetCore.Authorization;
+    using static Common.Constants;
 
+    [Authorize(Roles = AdministratorRole)]
     public class CitiesController : ApiController
     {
         private readonly ICitiesService cities;
@@ -19,10 +22,10 @@
             this.cities = cities;
             this.currentUser = currentUser;
         }
-        [HttpGet]
-        public async Task<IEnumerable<CitiesListingResponseModel>> All()
-        => await this.cities.AllCitiesAsync();
-      
-    }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IEnumerable<CitiesListingResponseModel>> All()
+        => await this.cities.AllCitiesAsync();      
+    }
 }
