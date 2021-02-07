@@ -106,7 +106,7 @@ else
                                    
                                 </div>
 
-                                <div class="form-row">
+                                @*<div class="form-row">
                                     <div class="col form-group">
                                         <label>Город</label>
                                         <InputSelectNumber @bind-Value="address.CityId" type="text" class="form-control">
@@ -115,11 +115,32 @@ else
                                                 <option value="@city.Id">@city.Name</option>                                              
                                                 }
                                         </InputSelectNumber>
+                                    </div>                                   
+                                </div>*@ 
+                                <div class="form-row">
+                                    <div class="col form-group">
+                                        <label>Место выдачи</label>
+                                        <InputSelectNumber @bind-Value="DeliveryId" 
+                                                           type="text" 
+                                                           class="form-control">
+                                            @foreach (var delivery in deliveries)
+                                                {
+                                                <option value="@delivery.Id">@delivery.Name</option>
+                                                }
+                                        </InputSelectNumber>
                                     </div>
-                                   
                                 </div>
 
 
+                                <div class="form-group">
+                                    <p>@Delivery.Target</p>
+                                </div>
+                                <div class="form-group">
+                                    <p>@Delivery.Phone</p>
+                                </div>
+                                <div class="form-group">
+                                    <p>@Delivery.Price</p>
+                                </div>
                                 <div class="form-group">
                                     <label>Улица, дом...</label>
                                     <InputTextArea @bind-Value="address.Description" class="form-control" rows="2"></InputTextArea>

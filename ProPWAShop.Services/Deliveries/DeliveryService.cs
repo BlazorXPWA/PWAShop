@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ProPWAShop.Services.Deliveries
 {
-    class DeliveryService : BaseService<Delivery>, IDeliveryService
+    public class DeliveryService : BaseService<Delivery>, IDeliveryService
     {
         public DeliveryService(ProPWAShopDbContext data, IMapper mapper)
             : base(data, mapper)

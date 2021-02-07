@@ -20,6 +20,8 @@
 
     using static Data.ModelConstants.Identity;
     using ProPWAShop.Services.Confirm;
+    using ProPWAShop.Services.Addresses;
+    using ProPWAShop.Services.Deliveries;
 
     public static class ServiceCollectionExtensions
     {
@@ -66,6 +68,8 @@
         {
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddScoped<IConfirmService, ConfirmService>();
+            services.AddScoped<IAddressesService, AddressesService>();
+            services.AddScoped<IDeliveryService, DeliveryService>();
 
             return services;
         }

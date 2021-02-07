@@ -11,22 +11,40 @@
     using Models.Orders;
     using Models.ShoppingCarts;
     using Models.Cities;
+    using Microsoft.AspNetCore.Components;
 
     public partial class Checkout
     {
         private readonly AddressesRequestModel address = new AddressesRequestModel();
         private readonly OrdersRequestModel order = new OrdersRequestModel();
-
         private string email;
         private decimal totalPrice;
         private IEnumerable<ShoppingCartProductsResponseModel> cartProducts;
         private IEnumerable<CitiesListingResponseModel> cities;
+        private IEnumerable<Delivery> deliveries;
+        private int deliveryId;
+
+        [Parameter]
+        public Delivery Delivery { get; set; }
+        [Parameter]
+        public int DeliveryId
+        {
+            get => deliveryId;
+            set
+            {
+                deliveryId = value;
+                Delivery = deliveries.FirstOrDefault(p => p.Id == deliveryId);
+            }
+        }
 
         protected override async Task OnInitializedAsync()
         {
+            deliveries = await DeliveriesClientService.AllAsynk();
+            DeliveryId = 1;
             var state = await this.AuthState.GetAuthenticationStateAsync();
             var user = state.User;
             address.CityId = 1;
+            address.PhoneNumber=$"+38071{user.GetEmail().Substring(0,7)}";
             this.email = user.GetEmail();
             this.cities = await this.CitiesService.Cities();
             this.cartProducts = await this.ShoppingCartsService.Mine();
